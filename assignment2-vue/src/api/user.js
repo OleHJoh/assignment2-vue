@@ -3,15 +3,15 @@ const apiKey = "BWx8fZ5xn0WTGWZrj4wpAw=="
 
 
 export async function apiUserLogin(username) {
-    try {
-        fetch(`${apiURL}/trivia`, {
+
+        return fetch(`${apiURL}/trivia`, {
             method: 'POST',
             headers: {
                 'X-API-Key': apiKey,
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({ 
-                username: 'the-trivia-master', 
+                username: username, 
                 highScore: 0 
             })
         })
@@ -23,17 +23,12 @@ export async function apiUserLogin(username) {
         })
         .then(newUser => {
             // newUser is the new user with an id
-            console.log("user returns newUser")
-            console.log(newUser)
             return newUser
         })
         .catch(error => {
             return error.message
         })
-    }
-    catch (e) {
-        return e.message
-    }
+    
 }
 /*
 export async function apiUserLogin(username) {
