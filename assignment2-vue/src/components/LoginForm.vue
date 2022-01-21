@@ -17,7 +17,7 @@ const onSubmit = async () => {
         if (error !== null) {
             displayError.value = error
         }
-        emit("onLogin", username.value)
+        emit("onLogin")
     }
 }
 

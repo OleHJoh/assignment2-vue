@@ -1,13 +1,10 @@
 <script setup>
 import { useRouter } from 'vue-router';
-import { useStore } from "vuex";
 import LoginForm from '../components/LoginForm.vue';
 
 const router = useRouter()
-const store = useStore()
 
-// expects username returned from LoginForm
-const handleOnLogin = (username) => {
+const handleOnLogin = () => {
     router.push("/questions")
 }
 
