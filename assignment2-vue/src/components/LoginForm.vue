@@ -1,17 +1,22 @@
 <script setup>
 import { ref } from 'vue';
+import { useStore } from 'vuex';
 
 const emit = defineEmits(["onLogin"])
+const store = useStore()
 
 const username = ref("")
 const displayError = ref("")
 
-const onSubmit = () => {
-    console.log(username.value)
+const onSubmit = async () => {
 
     if (!username.value) {
         displayError.value = "Please enter your username!"
     } else {
+        const error = await store.dispatch("saveUsername", username.value)
+        if (error !== null) {
+            displayError.value = error
+        }
         emit("onLogin", username.value)
     }
 }

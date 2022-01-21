@@ -8,8 +8,6 @@ const store = useStore()
 
 // expects username returned from LoginForm
 const handleOnLogin = (username) => {
-    
-    store.dispatch("saveUsername", username)
     router.push("/questions")
 }
 
