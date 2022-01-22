@@ -17,6 +17,7 @@ export default createStore({
             try {
                 const newUser = await apiUserLogin(username)
                 commit("setUsername", newUser.username)
+                localStorage.setItem("test-username", newUser.username)
 
                 return null
             }
