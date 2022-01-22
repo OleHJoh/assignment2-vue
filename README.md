@@ -13,3 +13,6 @@ To run to do list:
 2. Run "npm install vue-ruter@4" in the vue folder
 3. Run "npm i vuex@4" in the vue folder
 4. Run "npm run dev" in the vue folder
+
+
+Link to the user api: https://questions-vue.herokuapp.com/trivia
