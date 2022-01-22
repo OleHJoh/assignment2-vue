@@ -1,13 +1,15 @@
 import { createStore } from 'vuex'
 import { apiUserLogin } from "./api/user"
 import { apiGetUserScores } from './api/user'
+import { apiFetchQuestions } from "./api/questions";
 
 export default createStore({
 
     state: {
         username: "",
         highestScore: 0,
-        error: ""
+        error: "",
+        questions:[]
     },
     mutations: {
         setUsername: (state, username) => {
@@ -15,6 +17,9 @@ export default createStore({
         },
         setHighestScore: (state, highest) => {
             state.highestScore = highest
+        },
+        setQuestions: (state, questions) => {
+            state.questions = questions
         }
     },
     actions: {
@@ -44,5 +49,8 @@ export default createStore({
                 return e
             }
         }
+        // async fetchQuestions: ({commit}, questions) => {
+        //     const [ error, movies] = await apiFetchQuestions()
+        // }
     }
 })
