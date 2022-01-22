@@ -1,7 +1,6 @@
 const apiURL = "https://rieny-noroff-api.herokuapp.com"
 const apiKey = "BWx8fZ5xn0WTGWZrj4wpAw=="
 
-
 export async function apiUserLogin(username) {
     
     try {
@@ -13,7 +12,7 @@ export async function apiUserLogin(username) {
             },
             body: JSON.stringify({ 
                 username: username, 
-                highScore: 0 
+                highScore: 0
             })
         }
         const response = await fetch(`${apiURL}/trivia`, config)
@@ -24,4 +23,17 @@ export async function apiUserLogin(username) {
     catch (error) {
         return error
     }    
+}
+
+export async function apiGetUserScores(username) {
+    
+    try {
+        const response = await fetch(`${apiURL}/trivia?username=${username}`)
+        const results = await response.json()
+
+        return results
+    }
+    catch (error) {
+        return error
+    }
 }

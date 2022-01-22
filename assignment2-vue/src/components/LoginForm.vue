@@ -8,6 +8,7 @@ const store = useStore()
 const username = ref("")
 const displayError = ref("")
 
+
 const onSubmit = async () => {
 
     if (!username.value) {
