@@ -11,8 +11,8 @@ export default createStore({
         }
     },
     actions: {
-        async fetchQuestions: ({commit}, questions) => {
-            const [ error, movies] = await apiFetchQuestions()
-        }
+        // async fetchQuestions: ({commit}, questions) => {
+        //     const [ error, movies] = await apiFetchQuestions()
+        // }
     }
 })
