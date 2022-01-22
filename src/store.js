@@ -48,9 +48,16 @@ export default createStore({
             catch (e) {
                 return e
             }
+        },
+        async fetchQuestions({commit}, questions) {
+            const [ error, movies] = await apiFetchQuestions(10,0,0,0)
+            
+            if(error !== null){
+                return error
+            }
+            commit("setQuestions", questions)
+            localStorage.setItem("questions", questions)
+            return null
         }
-        // async fetchQuestions: ({commit}, questions) => {
-        //     const [ error, movies] = await apiFetchQuestions()
-        // }
     }
 })
