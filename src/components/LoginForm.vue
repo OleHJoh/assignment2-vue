@@ -35,5 +35,6 @@ const onSubmit = async () => {
     <div v-if="displayError">
         <p>{{ displayError }}</p>
     </div>
+<template>
     
 </template>
