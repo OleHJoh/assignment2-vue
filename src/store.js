@@ -1,13 +1,15 @@
 import { createStore } from 'vuex'
-import { apiUserLogin } from "./api/user"
-import { apiGetUserScores } from './api/user'
+import { apiGetUser } from './api/user'
+import { apiRegisterNewUser } from "./api/user"
+import { apiUpdateHighScore } from "./api/user"
 import { apiFetchQuestions } from "./api/questions";
 
 export default createStore({
 
     state: {
         username: "",
-        highestScore: 0,
+        highScore: 0,
+        userId: 0,
         error: "",
         questions:[]
     },
@@ -15,33 +17,42 @@ export default createStore({
         setUsername: (state, username) => {
             state.username = username
         },
-        setHighestScore: (state, highest) => {
-            state.highestScore = highest
+        setHighScore: (state, highScore) => {
+            state.highScore = highScore
+        },
+        setUserId: (state, id) => {
+            state.userId = id
         },
         setQuestions: (state, questions) => {
             state.questions = questions
         }
     },
     actions: {
-        async saveUsername({ commit }, username) {
+        async userLogin({ commit }, username) {
             try {
-                const newUser = await apiUserLogin(username)
-                commit("setUsername", newUser.username)
-                localStorage.setItem("test-username", newUser.username)
-
+                const user = await apiGetUser(username)                
+                if (user.length !== 0) { // user with username already exists 
+                    commit("setUsername", user[0].username)
+                    commit("setHighScore", user[0].highScore)
+                    commit("setUserId", user[0].id)
+                }
+                else { // new user
+                    const newUser = await apiRegisterNewUser(username)
+                    commit("setUsername", newUser.username)
+                }
                 return null
             }
             catch (e) {
-                return e.message
+                return e
             }
         },
-        async getHighestScore({ commit }, username) {
+        async updateHighScore({ commit, state }, newHighScore) {
             try {
-                const users = await apiGetUserScores(username)                
-                const scores = users.map(user => parseInt(user.highScore))
-                const highest = Math.max(...scores)
-
-                commit("setHighestScore", highest)
+                const updatedUser = await apiUpdateHighScore(newHighScore, state.userId)
+                if (updatedUser === null) {
+                    throw new Error("Could not update the highscore")
+                }
+                commit("setHighScore", newHighScore)
 
                 return null
             }
@@ -49,6 +60,7 @@ export default createStore({
                 return e
             }
         }
+        
         // async fetchQuestions: ({commit}, questions) => {
         //     const [ error, movies] = await apiFetchQuestions()
         // }
