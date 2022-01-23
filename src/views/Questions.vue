@@ -1,8 +1,9 @@
 <script setup>
     import { onMounted } from '@vue/runtime-core'
-import {useRouter} from 'vue-router'
+    import {useRouter} from 'vue-router'
     import { useStore } from 'vuex'
     import SelectQuestion from '../components/SelectQuestions.vue'
+    import QuestionsList from '../components/QuestionsList.vue'
 
     const router = useRouter()
     const store = useStore()
@@ -16,4 +17,5 @@ import {useRouter} from 'vue-router'
 <template>
     <h1>Questions</h1>
     <SelectQuestion />
+    <QuestionsList />
 </template>
