@@ -14,7 +14,7 @@ const onSubmit = async () => {
     if (!username.value) {
         displayError.value = "Please enter your username!"
     } else {
-        const error = await store.dispatch("saveUsername", username.value)
+        const error = await store.dispatch("userLogin", username.value)
         if (error !== null) {
             displayError.value = error
         }
