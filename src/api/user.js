@@ -25,7 +25,7 @@ export async function apiRegisterNewUser(username) {
             },
             body: JSON.stringify({ 
                 username: username, 
-                highScore: 100
+                highScore: 0
             })
         }
         const response = await fetch(`${apiURL}/trivia`, config)
