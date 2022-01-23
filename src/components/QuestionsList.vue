@@ -10,4 +10,6 @@ const questions = computed(() => store.state.questions)
     <ul>
         <QuestionsListItem v-for="question in questions" :key="question.id" :question="question"/>
     </ul>
+    <button type="button">Reset</button>
+    <button type="button">Confirm Answers</button>
 </template>

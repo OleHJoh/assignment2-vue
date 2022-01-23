@@ -43,9 +43,10 @@
 
 <template>
     <input type="number" name="trivia_amount" id="trivia_amount" min="1" max="50" value="10">
-    <select name="categories" id="categories">
+
+    <select v-model="categories" id="categories">
         <option value="0">any category</option>
-        <CategoryItems v-for="category in categories" :key="category.id" :category="category"/>
+        <option v-for="category in categories" :value="category.id" :key="category.id">{{category.name}}</option>
     </select>
     <select name="difficulty" id="difficulty">
         <option value="0">any difficulty</option>
