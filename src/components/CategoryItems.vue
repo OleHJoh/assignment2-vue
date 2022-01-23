@@ -1,6 +1,6 @@
 <script setup>
     defineProps({
-        question: {
+        category: {
             type: Object,
             required: true
         }
@@ -8,8 +8,5 @@
 
 </script>
 <template>
-    <li>
-        <p>{{question.question}}</p>
-        <!-- <v-select :options=""></v-select> -->
-    </li>
+    <option value="{category.id}">{{category.name}}</option>
 </template>

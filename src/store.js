@@ -2,6 +2,7 @@ import { createStore } from 'vuex'
 import { apiUserLogin } from "./api/user"
 import { apiGetUserScores } from './api/user'
 import { apiFetchQuestions } from "./api/questions";
+import { apiFetchCategories } from './api/categories';
 
 export default createStore({
 
@@ -9,7 +10,8 @@ export default createStore({
         username: "",
         highestScore: 0,
         error: "",
-        questions:[]
+        questions:[],
+        categories:[]
     },
     mutations: {
         setUsername: (state, username) => {
@@ -20,6 +22,9 @@ export default createStore({
         },
         setQuestions: (state, questions) => {
             state.questions = questions
+        },
+        setCategories: (state, categories) => {
+            state.categories = categories
         }
     },
     actions: {
@@ -49,14 +54,20 @@ export default createStore({
                 return e
             }
         },
-        async fetchQuestions({commit}, questions) {
-            const [ error, movies] = await apiFetchQuestions(10,0,0,0)
+        async fetchQuestions({commit}) {
+            const questions = await apiFetchQuestions(10,0,0,0)
             
-            if(error !== null){
-                return error
-            }
+            
             commit("setQuestions", questions)
             localStorage.setItem("questions", questions)
+            return null
+        },
+        async fetchCategories({commit}) {
+            const categories = await apiFetchCategories()
+            
+            
+            commit("setCategories", categories)
+            localStorage.setItem("categories", categories)
             return null
         }
     }
