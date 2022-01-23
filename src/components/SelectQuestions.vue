@@ -1,7 +1,6 @@
 <script setup>
     import {computed, ref} from 'vue'
     import {useStore} from 'vuex'
-    import CategoryItems from "./CategoryItems.vue";
 
     const emit = defineEmits(["onStart"])
     const store = useStore()
@@ -18,9 +17,9 @@
 
     const onStartClick = async () => {
         const questionsNumber = document.getElementById("trivia_amount").value
-        const category = document.getElementById("categories").selectedIndex
-        const difficulty = document.getElementById("difficulty").selectedIndex
-        const type = document.getElementById("type").selectedIndex   
+        const category = document.getElementById("categories").value
+        const difficulty = document.getElementById("difficulty").value
+        const type = document.getElementById("type").value   
         
         let config = []
         config.push(questionsNumber)
@@ -44,7 +43,7 @@
 <template>
     <input type="number" name="trivia_amount" id="trivia_amount" min="1" max="50" value="10">
 
-    <select v-model="categories" id="categories">
+    <select name="categories" id="categories">
         <option value="0">any category</option>
         <option v-for="category in categories" :value="category.id" :key="category.id">{{category.name}}</option>
     </select>

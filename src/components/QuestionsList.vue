@@ -8,8 +8,8 @@ const questions = computed(() => store.state.questions)
 </script>
 <template>
     <ul>
-        <QuestionsListItem v-for="question in questions" :key="question.id" :question="question"/>
+        <QuestionsListItem />
     </ul>
     <button type="button">Reset</button>
-    <button type="button">Confirm Answers</button>
+    <button type="button">Confirm</button>
 </template>

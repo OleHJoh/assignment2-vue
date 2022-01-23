@@ -1,5 +1,9 @@
 <script setup>
-import { onMounted } from "@vue/runtime-core"
+import {computed} from 'vue'
+import {useStore} from 'vuex'
+
+    const questions = computed(() => store.state.questions)
+    const store = useStore()
 
     defineProps({
         question: {
@@ -8,37 +12,13 @@ import { onMounted } from "@vue/runtime-core"
         }
     })
 
-    let answers = []
-
-    function checkQuestionType(){
-        if(question.type === "boolean"){
-            answers.push(question.correct_answer)
-            answers.push(question.incorrect_answers[0])
-        }
-        if(question.type === "multiple"){
-            for(let i = 0; i < question.incorrect_answers.length; i++){
-                answers.push(question.incorrect_answers[i])
-            }
-        }
-        for(let i = 0; i < answers.length; i++){
-        const html = `
-            <option value="${i}">
-            ${answers[i]}
-            </option>
-        `   
-        answer.insertAdjacentHTML("beforeend", html)
-    };
-    }
-
-    onMounted(() => {
-        checkQuestionType()
-    })
-
 </script>
 <template>
-    <li>
-        <p id="{question.correct_answer}">{{question.question}}</p>
+    <li v-for="question in questions" :key="question.id">
+        <p>{{question.question}}</p>
         <select name="answers" id="answer">
+            <option :value="question.correct_answer" :key="question.id">{{question.correct_answer}}</option>
+            <option v-for="answer in question.incorrect_answers" :value="answer" :key="answer.id">{{answer}}</option>
         </select>
     </li>
 </template>
