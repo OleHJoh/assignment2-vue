@@ -10,6 +10,5 @@
 <template>
     <li>
         <p>{{question.question}}</p>
-        <!-- <v-select :options=""></v-select> -->
     </li>
 </template>

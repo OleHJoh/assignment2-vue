@@ -51,16 +51,27 @@ export default createStore({
                 return null
             }
             catch (e) {
-                return e
+                return e.message
             }
         },
-        async fetchQuestions({commit}) {
-            const questions = await apiFetchQuestions(10,0,0,0)
-            
-            
-            commit("setQuestions", questions)
-            localStorage.setItem("questions", questions)
-            return null
+        async fetchQuestions({ commit },config) {
+            try{
+                console.log(config)
+                const quantity = config[0]
+                const category = config[1]
+                const difficulty = config[2]
+                const type = config[3]
+
+                const questions = await apiFetchQuestions(quantity,category,difficulty,type)
+                
+                
+                commit("setQuestions", questions)
+                localStorage.setItem("questions", questions)
+                return null
+            }
+            catch (e){
+                return e.message
+            }
         },
         async fetchCategories({commit}) {
             const categories = await apiFetchCategories()
