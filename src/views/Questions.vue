@@ -7,11 +7,9 @@
 
     const router = useRouter()
     const store = useStore()
-    const chooseQuestions = ref(true)
-    const showQuestions = ref(false)
 
     onMounted(async () => {
-        await store.dispatch("fetchCategories")
+        
     })
 
     const handleStart = () => {
@@ -24,6 +22,5 @@
 
 <template>
     <h1>Questions</h1>
-    <SelectQuestion v-if="chooseQuestions" @onStart="handleStart"/>
-    <QuestionsList v-if="showQuestions"/>
+    <QuestionsList />
 </template>

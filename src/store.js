@@ -13,7 +13,8 @@ export default createStore({
         userId: 0,
         error: "",
         questions:[],
-        categories:[]
+        categories:[],
+        result: 0
     },
     mutations: {
         setUsername: (state, username) => {
@@ -30,6 +31,9 @@ export default createStore({
         },
         setCategories: (state, categories) => {
             state.categories = categories
+        },
+        setResult: (state, result) => {
+            state.result = result
         }
     },
     actions: {

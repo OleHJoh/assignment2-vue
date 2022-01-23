@@ -11,7 +11,5 @@ import {useStore} from 'vuex'
 
 </script>
 <template>
-    <input type="radio" v-bind:value="answer">
-    <label>{{answer}}</label>
-    <br>
+    
 </template>

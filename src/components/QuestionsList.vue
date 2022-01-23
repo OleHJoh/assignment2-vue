@@ -1,10 +1,11 @@
 <script setup>
-import {computed, onRenderTriggered} from 'vue'
+import {computed, onMounted} from 'vue'
 import {useStore} from 'vuex'
 import QuestionsListItem from '../components/QuestionsListItem.vue'
 
-    const questions = computed(() => store.state.questions)
     const store = useStore()
+    const questions = computed(() => store.state.questions)
+    console.log(questions.value)
     let score = 0
     let instance = 0
     let answers = []
@@ -14,12 +15,6 @@ import QuestionsListItem from '../components/QuestionsListItem.vue'
 
     }
 
-    onRenderTriggered(() => {
-        setTimeout(function(){
-            console.log("Test time out")
-        }, 5000)
-    })
-
     const convertAnswers = () => {
 
         answers.push(questions[instance].correct_answer)
@@ -28,10 +23,15 @@ import QuestionsListItem from '../components/QuestionsListItem.vue'
         console.log(correct)
     }
 
+    //onMounted(convertAnswers)
+
 </script>
 <template>
-    <p>{{questions[instance].questions}}</p>
-    <form>
-        <QuestionsListItem v-for="answer in answers" :key="answer.id" :answer="answer" />
-    </form>
+    <p>{{questions[instance].question}}</p>
+    <select name="answers" id="answer" v-for="question in questions" :key="question.id">
+        <option v-for="answer in question.incorrect_answers" :value="answer" :key="answer.id">{{ answer }}</option>
+        <option :value="question.correct_answer" :key="question.id">{{question.correct_answer}}</option>
+    </select>
+    <br>
+    <button type="button" @click="onSubmit">Submit</button>
 </template>
