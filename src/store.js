@@ -3,6 +3,7 @@ import { apiGetUser } from './api/user'
 import { apiRegisterNewUser } from "./api/user"
 import { apiUpdateHighScore } from "./api/user"
 import { apiFetchQuestions } from "./api/questions";
+import { apiFetchCategories } from './api/categories';
 
 export default createStore({
 
@@ -11,7 +12,8 @@ export default createStore({
         highScore: 0,
         userId: 0,
         error: "",
-        questions:[]
+        questions:[],
+        categories:[]
     },
     mutations: {
         setUsername: (state, username) => {
@@ -25,6 +27,9 @@ export default createStore({
         },
         setQuestions: (state, questions) => {
             state.questions = questions
+        },
+        setCategories: (state, categories) => {
+            state.categories = categories
         }
     },
     actions: {
@@ -57,12 +62,35 @@ export default createStore({
                 return null
             }
             catch (e) {
-                return e
+                return e.message
             }
+        },
+        async fetchQuestions({ commit },config) {
+            try{
+                console.log(config)
+                const quantity = config[0]
+                const category = config[1]
+                const difficulty = config[2]
+                const type = config[3]
+
+                const questions = await apiFetchQuestions(quantity,category,difficulty,type)
+                
+                
+                commit("setQuestions", questions)
+                localStorage.setItem("questions", questions)
+                return null
+            }
+            catch (e){
+                return e.message
+            }
+        },
+        async fetchCategories({commit}) {
+            const categories = await apiFetchCategories()
+            
+            
+            commit("setCategories", categories)
+            localStorage.setItem("categories", categories)
+            return null
         }
-        
-        // async fetchQuestions: ({commit}, questions) => {
-        //     const [ error, movies] = await apiFetchQuestions()
-        // }
     }
 })
