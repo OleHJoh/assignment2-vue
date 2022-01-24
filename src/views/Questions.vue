@@ -5,19 +5,17 @@
     import SelectQuestion from '../components/SelectQuestions.vue'
     import QuestionsList from '../components/QuestionsList.vue'
 
-
     const router = useRouter()
     const store = useStore()
 
-    onMounted(async () => {
-        
-    })
-
     const handleStart = () => {
         chooseQuestions.value = false
-        showQuestions.value = true
-        
+        showQuestions.value = true   
     }
+
+/*     const handleOnSubmit = (usersAnswers) => {
+        router.push("/result", usersAnswers)
+    } */
 
 </script>
 
