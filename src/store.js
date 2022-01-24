@@ -14,7 +14,8 @@ export default createStore({
         error: "",
         questions:[],
         categories:[],
-        result: 0
+        result: 0,
+        answers: []
     },
     mutations: {
         setUsername: (state, username) => {
@@ -34,6 +35,9 @@ export default createStore({
         },
         setResult: (state, result) => {
             state.result = result
+        },
+        setAnswers: (state, answers) => {
+            state.answers = answers
         }
     },
     actions: {
@@ -69,7 +73,7 @@ export default createStore({
                 return e.message
             }
         },
-        async fetchQuestions({ commit },config) {
+        async fetchQuestions({ commit, dispatch },config) {
             try{
                 console.log(config)
                 const quantity = config[0]
@@ -81,6 +85,7 @@ export default createStore({
                 
                 
                 commit("setQuestions", questions)
+                dispatch("createAnswers", questions)
                 localStorage.setItem("questions", questions)
                 return null
             }
@@ -95,6 +100,10 @@ export default createStore({
             commit("setCategories", categories)
             localStorage.setItem("categories", categories)
             return null
+        },
+        createAnswers({commit, state}, questions){
+            answers.push(questions[state.currentQuestionIdx].correct_answer)
+            answers.push(questions[state.currentQuestionIdx].incorrect_answers)
         }
     }
 })

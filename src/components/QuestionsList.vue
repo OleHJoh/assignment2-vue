@@ -8,8 +8,9 @@ import QuestionsListItem from '../components/QuestionsListItem.vue'
     console.log(questions.value)
     let score = 0
     let instance = 0
-    let answers = []
+    let answers = computed(() => store.state.answers)
     let correct = ""
+    console.log(answers.value)
 
     const onSubmit = () => {
 
