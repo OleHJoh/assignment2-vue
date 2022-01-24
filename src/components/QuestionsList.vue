@@ -1,6 +1,7 @@
 <script setup>
 import {computed} from 'vue'
 import {useStore} from 'vuex'
+import { useRouter } from 'vue-router';
 import QuestionsListItem from '../components/QuestionsListItem.vue'
 import router from '../router';
 
@@ -17,16 +18,16 @@ import router from '../router';
                 index, answer
             })
         }
-
-        console.log(usersAnswers)
     }
 
+/*     const emit = defineEmits(
+        ["onSubmit"]
+    ) */
+    const router = useRouter()
     const handleOnSubmit = () => {
         usersAnswers.sort((a, b) => a.index - b.index)
-        console.log(usersAnswers)
-
-
-        router.push("/result")
+        //emit("onSubmit", usersAnswers)
+        router.push("/result", usersAnswers)
     }  
 
 

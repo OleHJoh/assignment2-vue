@@ -12,6 +12,7 @@ import SelectQuestions from '../components/SelectQuestions.vue';
 
     onMounted(async () => {
         await store.dispatch("fetchCategories")
+        console.log(router.usersAnswers)
     })
 
     const onTryAgain = () => {

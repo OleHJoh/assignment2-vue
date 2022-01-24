@@ -14,7 +14,8 @@ const routes = [
     },
     {
         path: "/result",
-        component: Result
+        component: Result,
+        props: ['usersAnswers']
     }
 ]
 
