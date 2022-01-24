@@ -14,8 +14,7 @@ export default createStore({
         error: "",
         questions:[],
         categories:[],
-        result: 0,
-        answers: []
+        result: 0
     },
     mutations: {
         setUsername: (state, username) => {
@@ -35,9 +34,6 @@ export default createStore({
         },
         setResult: (state, result) => {
             state.result = result
-        },
-        setAnswers: (state, answers) => {
-            state.answers = answers
         }
     },
     actions: {
@@ -73,7 +69,7 @@ export default createStore({
                 return e.message
             }
         },
-        async fetchQuestions({ commit, dispatch },config) {
+        async fetchQuestions({ commit },config) {
             try{
                 console.log(config)
                 const quantity = config[0]
@@ -82,11 +78,21 @@ export default createStore({
                 const type = config[3]
 
                 const questions = await apiFetchQuestions(quantity,category,difficulty,type)
+
+                let questionsWithAnswers = questions.map(question => {
                 
-                
-                commit("setQuestions", questions)
-                dispatch("createAnswers", questions)
-                localStorage.setItem("questions", questions)
+                const answers = [question.correct_answer, ...question.incorrect_answers]
+
+    
+                return {
+                ...question,
+                answers
+                }
+                })
+
+  
+                commit("setQuestions", questionsWithAnswers)
+                localStorage.setItem("questions", questionsWithAnswers)
                 return null
             }
             catch (e){
@@ -100,10 +106,6 @@ export default createStore({
             commit("setCategories", categories)
             localStorage.setItem("categories", categories)
             return null
-        },
-        createAnswers({commit, state}, questions){
-            answers.push(questions[state.currentQuestionIdx].correct_answer)
-            answers.push(questions[state.currentQuestionIdx].incorrect_answers)
         }
     }
 })
