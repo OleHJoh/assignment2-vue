@@ -5,6 +5,13 @@ html{
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
+#app{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 h1{
     margin-bottom: 0;
 }
@@ -62,4 +69,5 @@ hr{
     border-width: 4px;
     border-style: solid;
     color: lightgray;
+    width: 100%;
 }
