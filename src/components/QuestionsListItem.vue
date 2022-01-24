@@ -13,6 +13,10 @@ import {useStore} from 'vuex'
         }
     })
 
+    const onAnswerClick = (index, answer) => {
+
+    }
+
 </script>
 <template>
     <li v-for="(question, index) in questions" :key="question">
