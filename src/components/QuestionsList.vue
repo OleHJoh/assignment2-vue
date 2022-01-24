@@ -2,6 +2,7 @@
 import {computed} from 'vue'
 import {useStore} from 'vuex'
 import QuestionsListItem from '../components/QuestionsListItem.vue'
+import router from '../router';
 
     const usersAnswers = []
 
@@ -23,6 +24,9 @@ import QuestionsListItem from '../components/QuestionsListItem.vue'
     const handleOnSubmit = () => {
         usersAnswers.sort((a, b) => a.index - b.index)
         console.log(usersAnswers)
+
+
+        router.push("/result")
     }  
 
 
