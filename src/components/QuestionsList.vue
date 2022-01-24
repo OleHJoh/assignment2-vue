@@ -3,6 +3,7 @@ import {computed} from 'vue'
 import {useStore} from 'vuex'
 import { useRouter } from 'vue-router';
 import QuestionsListItem from '../components/QuestionsListItem.vue'
+import router from '../router';
 
     const usersAnswers = []
 
