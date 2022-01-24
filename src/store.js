@@ -32,6 +32,13 @@ export default createStore({
             state.categories = categories
         }
     },
+    getters: {
+        getQuestions: (state) => state.questions,//.map(question => question.question),
+
+        getCorrectAnswers: (state) => state.questions.map(question => question.correct_answer),
+
+        getIncorrectAnswers: (state)  => state.questions.map(question => question.incorrect_answers),
+    },
     actions: {
         async userLogin({ commit }, username) {
             try {
@@ -74,8 +81,8 @@ export default createStore({
                 const type = config[3]
 
                 const questions = await apiFetchQuestions(quantity,category,difficulty,type)
-                
-                
+                //const questions = results.map(question => question.question)
+
                 commit("setQuestions", questions)
                 localStorage.setItem("questions", questions)
                 return null

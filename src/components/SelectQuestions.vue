@@ -27,14 +27,7 @@
         config.push(difficulty)
         config.push(type)
 
-        const error = await store.dispatch("fetchQuestions", config)
-        if(error !== null){
-            displayError.value = error
-        }
-
-
-
-        emit("onStart")
+        emit("onStart", config)
     }
 
 

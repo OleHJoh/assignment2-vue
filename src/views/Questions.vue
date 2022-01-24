@@ -14,10 +14,11 @@
         await store.dispatch("fetchCategories")
     })
 
-    const handleStart = () => {
+    const handleStart = async (config) => {
         chooseQuestions.value = false
         showQuestions.value = true
-        
+
+        await store.dispatch("fetchQuestions", config)
     }
 
 </script>
