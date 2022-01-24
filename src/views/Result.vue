@@ -11,7 +11,6 @@ import SelectQuestions from '../components/SelectQuestions.vue';
     const chooseQuestions = ref(false)
 
     onMounted(async () => {
-        await store.dispatch("fetchCategories")
         console.log(router.usersAnswers)
     })
 
