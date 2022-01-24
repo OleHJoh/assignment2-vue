@@ -41,6 +41,7 @@
 </script>
 
 <template>
+    <h3>Choose the questions you want</h3>
     <input type="number" name="trivia_amount" id="trivia_amount" min="1" max="50" value="10">
 
     <select name="categories" id="categories">
