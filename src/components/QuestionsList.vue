@@ -1,6 +1,6 @@
 <script setup>
-import {computed} from 'vue'
 import {useStore} from 'vuex'
+import {computed} from 'vue'
 import { useRouter } from 'vue-router';
 import QuestionsListItem from '../components/QuestionsListItem.vue'
 
@@ -19,14 +19,20 @@ import QuestionsListItem from '../components/QuestionsListItem.vue'
         }
     }
 
-/*     const emit = defineEmits(
-        ["onSubmit"]
-    ) */
     const router = useRouter()
+    const store = useStore()
+
     const handleOnSubmit = () => {
-        usersAnswers.sort((a, b) => a.index - b.index)
-        //emit("onSubmit", usersAnswers)
-        router.push("/result", usersAnswers)
+        
+        const numberOfQuestions = computed(() => store.getters.getQuestionsSize)
+
+        if (usersAnswers.length < numberOfQuestions.value) {
+            alert("Please answer all the questions")
+        } else {
+            usersAnswers.sort((a, b) => a.index - b.index)
+            store.dispatch("setUsersAnswersToResult", usersAnswers)
+            router.push("/result")
+        }
     }  
 
 

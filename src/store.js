@@ -14,7 +14,7 @@ export default createStore({
         error: "",
         questions:[],
         categories:[],
-        result: 0
+        usersAnswers: []
     },
     mutations: {
         setUsername: (state, username) => {
@@ -32,8 +32,13 @@ export default createStore({
         setCategories: (state, categories) => {
             state.categories = categories
         },
-        setResult: (state, result) => {
-            state.result = result
+        setUsersAnswers: (state, usersAnswers) => {
+            state.usersAnswers = usersAnswers
+        }
+    },
+    getters: {
+        getQuestionsSize: (state) => {
+            return state.questions.length
         }
     },
     actions: {
@@ -80,16 +85,13 @@ export default createStore({
                 const questions = await apiFetchQuestions(quantity,category,difficulty,type)
 
                 let questionsWithAnswers = questions.map(question => {
-                
                 const answers = [question.correct_answer, ...question.incorrect_answers]
-
     
                 return {
                 ...question,
                 answers
                 }
                 })
-
   
                 commit("setQuestions", questionsWithAnswers)
                 localStorage.setItem("questions", questionsWithAnswers)
@@ -102,10 +104,12 @@ export default createStore({
         async fetchCategories({commit}) {
             const categories = await apiFetchCategories()
             
-            
             commit("setCategories", categories)
             localStorage.setItem("categories", categories)
             return null
+        },
+        setUsersAnswersToResult({commit}, usersAnswers) {
+            commit("setUsersAnswers", usersAnswers)
         }
     }
 })

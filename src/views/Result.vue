@@ -1,17 +1,15 @@
 <script setup>
-import {useStore} from 'vuex'
 import { useRouter } from 'vue-router';
 import { onMounted, ref } from '@vue/runtime-core';
 import SelectQuestions from '../components/SelectQuestions.vue';
+import ResultQuestions from '../components/ResultQuestions.vue';
 
     const router = useRouter()
-    const store = useStore()
 
     const result = ref(true)
     const chooseQuestions = ref(false)
 
     onMounted(async () => {
-        console.log(router.usersAnswers)
     })
 
     const onTryAgain = () => {
@@ -30,7 +28,9 @@ import SelectQuestions from '../components/SelectQuestions.vue';
 </script>
 
 <template>
-    <h1>Result</h1>
+    <ul>
+        <ResultQuestions />
+    </ul>
     <hr>
     <div v-if="result">
         <button type="button" @click="onTryAgain">Try Again</button>
