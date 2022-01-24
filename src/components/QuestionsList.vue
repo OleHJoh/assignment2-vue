@@ -35,6 +35,7 @@ import QuestionsListItem from '../components/QuestionsListItem.vue'
     <ul>
         <QuestionsListItem @onClicked="handleOnClicked" />
     </ul>
-    <button type="button" @click="handleOnSubmit">Submit</button>
+    <hr>
+    <div id="submitBtnContainer"><button type="button" @click="handleOnSubmit">Submit</button></div>
 
 </template>

@@ -20,6 +20,7 @@
 </script>
 
 <template>
-    <h1>Questions</h1>
+    <h1 id="questionsTittle">Questions</h1>
+    <hr>
     <QuestionsList />
 </template>

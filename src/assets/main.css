@@ -14,6 +14,10 @@ ul{
     padding: 0;
 }
 
+li{
+    text-align: center;
+}
+
 button {
     margin: 2px;
     width: auto;
@@ -43,4 +47,19 @@ select{
     font-family: inherit;
     border-style: outset;
     border-width: 2px;
+}
+
+#questionsTittle{
+    text-align: center;
+}
+
+#submitBtnContainer{
+    text-align: center;
+    margin-top: 20px;
+}
+
+hr{
+    border-width: 4px;
+    border-style: solid;
+    color: lightgray;
 }
