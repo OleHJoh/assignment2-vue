@@ -31,6 +31,7 @@ import SelectQuestions from '../components/SelectQuestions.vue';
 
 <template>
     <h1>Result</h1>
+    <hr>
     <div v-if="result">
         <button type="button" @click="onTryAgain">Try Again</button>
         <button type="button" @click="onLogout">Logout</button>

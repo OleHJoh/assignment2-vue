@@ -59,8 +59,11 @@
         <option value="multiple">multiple</option>
         <option value="boolean">true / false</option>
     </select>
-    <button type="button" @click="onResetClick">Reset</button>
-    <button type="button" @click="onStartClick">Start Quiz</button>
+    <hr>
+    <div id="selectBtns">
+        <button type="button" @click="onResetClick">Reset</button>
+        <button type="button" @click="onStartClick">Start Quiz</button>
+    </div>
     <div v-if="displayError">
         <p>{{ displayError }}</p>
     </div>

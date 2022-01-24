@@ -65,6 +65,12 @@ select{
     margin-top: 20px;
 }
 
+#selectBtns{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
 hr{
     border-width: 4px;
     border-style: solid;

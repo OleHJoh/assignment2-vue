@@ -28,6 +28,7 @@ const handleStart = () => {
 
 <template>
     <h1>Login</h1>
+    <hr>
     <LoginForm v-if="login" @onLogin="handleOnLogin" />
     <SelectQuestions v-if="chooseQuestions" @onStart="handleStart" />
 </template>
