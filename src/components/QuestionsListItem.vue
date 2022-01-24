@@ -7,16 +7,11 @@ import {useStore} from 'vuex'
     console.log(questions.value)
 
     const emit = defineEmits(
-        ["onClicked"],
-        ["onSubmit"]
+        ["onClicked"]
     )
 
     const onAnswerClick = (index, answer) => {
         emit("onClicked", index, answer)
-    }
-
-    const onSubmitClick = () => {
-        emit("onSubmit")
     }
 
 </script>
@@ -27,7 +22,5 @@ import {useStore} from 'vuex'
     <!-- pass in the current index to know for which question the answer is -->
     <button v-for="answer in question.answers" :key="answer" @click="onAnswerClick(index, answer)">{{ answer }}</button>
     </li>
-    
-    <button @click="onSubmitClick">Submit the answers</button>
 
 </template>
