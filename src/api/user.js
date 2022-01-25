@@ -1,6 +1,8 @@
+//Defined api URL with the apiKey
 const apiURL = "https://rieny-noroff-api.herokuapp.com"
 const apiKey = "BWx8fZ5xn0WTGWZrj4wpAw=="
 
+//Function to get the users from the api, and checks if the user already exists
 export async function apiGetUser(username) {
     
     try {
@@ -14,6 +16,7 @@ export async function apiGetUser(username) {
     }
 }
 
+//Function to register a new user to the api
 export async function apiRegisterNewUser(username) {
     
     try {
@@ -38,6 +41,7 @@ export async function apiRegisterNewUser(username) {
     }    
 }
 
+//FUnction to update the highscore for the logged in user
 export async function apiUpdateHighScore(highScore, userId) {
     
     try {

@@ -1,0 +1,79 @@
+/*main.css*/
+
+html{
+    background-color: rgb(236, 236, 236);
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+#app{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+h1{
+    margin-bottom: 0;
+}
+
+ul{
+    list-style: none;
+    padding: 0;
+}
+
+li{
+    text-align: center;
+}
+
+button {
+    margin: 2px;
+    width: auto;
+    overflow: visible;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    line-height: normal;
+    transition-duration: 0.4s;
+    border-style: outset;
+}
+button:hover{
+    background-color: lightgray;
+    cursor: pointer;
+}
+button:active{
+    border-style: inset;
+}
+
+input{
+    font-size: 16px;
+    font-family: inherit;
+    border-style: outset;
+}
+select{
+    font-size: 16px;
+    font-family: inherit;
+    border-style: outset;
+    border-width: 2px;
+}
+
+#questionsTittle{
+    text-align: center;
+}
+
+#submitBtnContainer{
+    text-align: center;
+    margin-top: 20px;
+}
+
+#selectBtns{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+hr{
+    border-width: 4px;
+    border-style: solid;
+    color: lightgray;
+    width: 100%;
+}
