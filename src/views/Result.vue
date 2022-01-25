@@ -3,6 +3,7 @@ import { useRouter } from 'vue-router';
 import { onMounted, ref } from '@vue/runtime-core';
 import SelectQuestions from '../components/SelectQuestions.vue';
 import ResultQuestions from '../components/ResultQuestions.vue';
+import store from '../store';
 
     const router = useRouter()
 
@@ -18,6 +19,9 @@ import ResultQuestions from '../components/ResultQuestions.vue';
     }
 
     const onLogout = () => {
+        store.commit("setUsername", "")
+        store.commit("setHighScore", 0)
+        store.commit("setUserId", 0)
         router.push("/")
     }
 

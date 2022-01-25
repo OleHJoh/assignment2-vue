@@ -21,7 +21,14 @@ export async function apiFetchQuestions(amount, category, difficulty, type) {
         for(let i = 0; i < questionsList.length; i++){
             const question = parseHtml(questionsList[i].question)
             questionsList[i].question = question
+            const answer = parseHtml(questionsList[i].correct_answer)
+            questionsList[i].correct_answer = answer
+            for(let j = 0; j < questionsList[i].incorrect_answers.length; j++){
+                const answers = parseHtml(questionsList[i].incorrect_answers[j])
+                questionsList[i].incorrect_answers[j] = answers
+            }
         }
+        
         console.log(questionsList)
         return questionsList
         
