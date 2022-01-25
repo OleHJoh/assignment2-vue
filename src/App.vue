@@ -1,8 +1,9 @@
 <script setup>
-    import './assets/main.css'
+
 </script>
 
 
 <template>
+  <!-- Set's up a connection to router, and uses it as the view definer -->
   <router-view />
 </template>

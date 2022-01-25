@@ -1,7 +1,7 @@
-
+//Defined api URL
 const apiURL = "https://opentdb.com/api_category.php"
 
-
+//Fetch function for the catagories available
 export async function apiFetchCategories() {
 
     try {
